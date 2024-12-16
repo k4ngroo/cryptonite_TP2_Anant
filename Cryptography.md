@@ -182,7 +182,7 @@ References
 
 How you approached the challenge:
 
-- created a function to calculate the cube root of ct since the value of e=3 which is very small
+- created a function to calculate the cube root of ciphertext since the value of e=3 which is very small. The function uses Binary Search
 
 ```
 def root(n):
