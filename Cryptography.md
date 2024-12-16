@@ -246,7 +246,7 @@ picoCTF{n33d_a_lArg3r_e_606ce004}
 ```
 
 
-![screenshot]("C:/Users/anant/OneDrive/Pictures/MiniRSA.png")
+![screenshot]("./MiniRSA.png")
 
 What you learned through solving this challenge:
 
