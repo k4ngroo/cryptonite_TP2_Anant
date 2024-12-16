@@ -173,3 +173,92 @@ References
 - www.101computing.net
 - r/hacking
 - medium.com
+
+
+
+# MiniRSA
+
+**Flag:** `picoCTF{n33d_a_lArg3r_e_606ce004}`
+
+How you approached the challenge:
+
+- created a function to calculate the cube root of ct since the value of e=3 which is very small
+
+```
+def root(n):
+    a = 1
+    b = n
+    while (b-a) > 1:
+        mid = (a+b)//2
+        if (mid**3)>n:
+            b = mid
+        else:
+            a = mid
+        
+    if a**3 == n:
+        return a
+    elif b**3 == n:
+        return b
+    else:
+        return 0
+```
+
+- changed the obtained value into hexadecimal and used the value to get the flag by decoding into UTF-8 using codecs
+
+```
+import math
+import codecs
+
+n= 29331922499794985782735976045591164936683059380558950386560160105740343201513369939006307531165922708949619162698623675349030430859547825708994708321803705309459438099340427770580064400911431856656901982789948285309956111848686906152664473350940486507451771223435835260168971210087470894448460745593956840586530527915802541450092946574694809584880896601317519794442862977471129319781313161842056501715040555964011899589002863730868679527184420789010551475067862907739054966183120621407246398518098981106431219207697870293412176440482900183550467375190239898455201170831410460483829448603477361305838743852756938687673
+e= 3
+c= 2205316413931134031074603746928247799030155221252519872649649212867614751848436763801274360463406171277838056821437115883619169702963504606017565783537203207707757768473109845162808575425972525116337319108047893250549462147185741761825125 
+
+
+def root(n):
+    a = 1
+    b = n
+    while (b-a) > 1:
+        mid = (a+b)//2
+        if (mid**3)>n:
+            b = mid
+        else:
+            a = mid
+        
+    if a**3 == n:
+        return a
+    elif b**3 == n:
+        return b
+    else:
+        return 0
+
+m = root(c)
+print (m)
+p = hex(m)
+print(p)
+tex = codecs.decode(p[2:] , 'hex').decode('utf-8')
+print(tex)
+
+```
+```
+13016382529449106065894479374027604750406953699090365388202874238148389207291005
+0x7069636f4354467b6e3333645f615f6c41726733725f655f36303663653030347d
+picoCTF{n33d_a_lArg3r_e_606ce004}
+```
+
+
+![screenshot]("C:/Users/anant/OneDrive/Pictures/MiniRSA.png")
+
+What you learned through solving this challenge:
+
+1. RSA
+2. encoding and decoding
+3. Effects of the value of e on a RSA encryption
+
+Other incorrect methods you tried:
+
+- tried to find out the private key using mod n, realised it was supposed to be phi of n and not mod n
+
+References
+
+- stackoverflow.com
+- geeksforgeeks.com
